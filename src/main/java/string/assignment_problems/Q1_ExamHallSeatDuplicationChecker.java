@@ -1,7 +1,6 @@
-package main.java.string.assignment_problems;
+package string.assignment_problems;
 
-
-public class ExamHallSeatDuplicationChecker {
+public class Q1_ExamHallSeatDuplicationChecker {
 
     public static void checkDuplicateSeats(int[] seatNumbers) {
         boolean duplicateFound = false;
