@@ -22,17 +22,28 @@ class Candidate implements Comparable<Candidate> {
         return cgpa >= 6.5 && codingScore >= 60;
     }
 
-    double getCompositeScore() {
-        return cgpa * 10 + codingScore;
+    public double getCgpa() {
+        return cgpa;
+    }
+
+    public int getCodingScore() {
+        return codingScore;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getCompositeScore() {
+        return (cgpa * 10) + (codingScore * 0.5);
     }
 
     @Override
     public int compareTo(Candidate other) {
-        return Double.compare(other.getCompositeScore(), this.getCompositeScore());
-    }
-
-    String getName() {
-        return name;
+        return Double.compare(
+            other.getCompositeScore(),
+            this.getCompositeScore()
+        );
     }
 }
 
@@ -41,12 +52,16 @@ public class P5_PlacementDriveShortlistingRankingEngine {
     static String shortlistAndRank(Candidate[] candidates) {
 
         Candidate[] shortlisted = new Candidate[candidates.length];
+
         int count = 0;
 
         for (Candidate candidate : candidates) {
 
-            if (Candidate.isEligible(candidate.cgpa) ||
-                Candidate.isEligible(candidate.cgpa, candidate.codingScore)) {
+            if (Candidate.isEligible(candidate.getCgpa()) ||
+                Candidate.isEligible(
+                    candidate.getCgpa(),
+                    candidate.getCodingScore()
+                )) {
 
                 shortlisted[count] = candidate;
                 count++;
